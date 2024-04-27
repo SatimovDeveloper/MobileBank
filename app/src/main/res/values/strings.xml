@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MobileBank</string>
+    <string name="splashText">BANKPICK</string>
 </resources>

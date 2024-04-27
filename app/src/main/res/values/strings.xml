@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">MobileBank</string>
     <string name="splashText">BANKPICK</string>
+    <string name="introPageOneTextTitle">Fastest Payment in the world</string>
+    <string name="introPageOneText">Integrate multiple payment methods to help you up the process quickly</string>
+    <string name="introPageTwoTextTitle">The most Sacoure Platform for Customer</string>
+    <string name="introPageTwoText">Built-in Fingerprint, face recognition and more, keeping you completely safe</string>
+    <string name="introPageThreeTextTitle">Playing for Everything id Easy and Convenient</string>
+    <string name="introPageThreeText">Built-in Fingerprint, face recognition and more, keeping you completely safe</string>
 </resources>

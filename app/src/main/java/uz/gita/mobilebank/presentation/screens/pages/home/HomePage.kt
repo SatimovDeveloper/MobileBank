@@ -54,7 +54,9 @@ private fun HomeContent() {
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        Text(text = "Home Page", fontSize = 30.sp, color = TextColorBlack)
+        Text(text = "Home Page",
+            fontSize = 30.sp,
+            color = TextColorBlack)
 
     }
 

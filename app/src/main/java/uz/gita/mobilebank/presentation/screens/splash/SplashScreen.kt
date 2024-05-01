@@ -15,16 +15,19 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import cafe.adriel.voyager.core.screen.Screen
+import cafe.adriel.voyager.hilt.getViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import uz.gita.mobilebank.R
 import uz.gita.mobilebank.ui.theme.TextColorBlack
-
 class SplashScreen : Screen {
+
     @Composable
     override fun Content() {
+    val viewModel: SplashContract.ViewModel = getViewModel<SplashViewModel>()
+        viewModel.openIntroScreen()
         Box(
             modifier = Modifier.fillMaxSize(),
             contentAlignment = Alignment.Center

@@ -10,6 +10,7 @@ import cafe.adriel.voyager.navigator.Navigator
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import uz.gita.mobilebank.presentation.screens.main.MainScreen
 import uz.gita.mobilebank.presentation.screens.signIn.SignIn
 import uz.gita.mobilebank.presentation.screens.signUp.SignUp
 import uz.gita.mobilebank.presentation.screens.splash.SplashScreen
@@ -27,7 +28,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             MobileBankTheme {
-                Navigator(screen = SignUp()) { navigator ->
+                Navigator(screen = MainScreen()) { navigator ->
                     navigationHandler.navigationStack
                         .onEach { it.invoke(navigator) }
                         .launchIn(lifecycleScope)

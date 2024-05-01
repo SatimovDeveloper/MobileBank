@@ -79,6 +79,8 @@ dependencies {
     implementation("cafe.adriel.voyager:voyager-transitions:$voyagerVersion")
     implementation("cafe.adriel.voyager:voyager-bottom-sheet-navigator:$voyagerVersion")
     implementation("cafe.adriel.voyager:voyager-tab-navigator:$voyagerVersion")
+    // Screen Model == viewmodel
+    implementation("cafe.adriel.voyager:voyager-screenmodel:$voyagerVersion")
 
     //dagger hilt
     implementation("com.google.dagger:hilt-android:2.50")
@@ -87,4 +89,11 @@ dependencies {
     //Mvi orbit
     implementation("org.orbit-mvi:orbit-viewmodel:4.6.1")
     implementation("org.orbit-mvi:orbit-compose:4.6.1")
+
+    // kotlinx.coroutines
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
+
+    implementation("androidx.compose.ui:ui:1.6.6")
+    implementation("androidx.compose.material:material:1.6.6")
 }

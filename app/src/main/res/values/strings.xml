@@ -7,9 +7,9 @@
     <string name="introPageTwoText">Built-in Fingerprint, face recognition and more, keeping you completely safe</string>
     <string name="introPageThreeTextTitle">Playing for Everything id Easy and Convenient</string>
     <string name="introPageThreeText">Built-in Fingerprint, face recognition and more, keeping you completely safe</string>
-    <string name="sign_in">Sign In</string>
+    <string name="sign_in"> Sign In</string>
     <string name="phone">Phone Number</string>
-    <string name="sign_up">Sign Up</string>
+    <string name="sign_up"> Sign Up</string>
     <string name="first_name">First Name</string>
     <string name="last_name">Last Name</string>
     <string name="born_date">Date of birth</string>

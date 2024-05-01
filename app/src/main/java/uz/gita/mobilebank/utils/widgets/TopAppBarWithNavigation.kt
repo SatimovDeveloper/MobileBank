@@ -27,10 +27,9 @@ fun TopAppBarWithNavigation(
 ) {
     Row(
         modifier = Modifier
-            .padding(start = 16.dp, top = 16.dp)
+            .padding(start = 16.dp)
             .fillMaxWidth()
             .height(56.dp)
-            .background(White)
             .padding(8.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {

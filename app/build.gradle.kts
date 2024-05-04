@@ -96,4 +96,26 @@ dependencies {
 
     implementation("androidx.compose.ui:ui:1.6.6")
     implementation("androidx.compose.material:material:1.6.6")
+
+    //Timber
+    implementation("com.jakewharton.timber:timber:5.0.1")
+
+    //Gson
+    implementation("com.google.code.gson:gson:2.10.1")
+
+    //Json
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation ("com.google.code.gson:gson:2.10")
+
+    //Rest Api
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2")
+
+    /**
+     *  Chuck
+     */
+    debugImplementation("com.github.chuckerteam.chucker:library:4.0.0")
+    releaseImplementation("com.github.chuckerteam.chucker:library-no-op:3.5.2")
 }

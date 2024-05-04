@@ -5,5 +5,5 @@ data class CardUiData (
     val cardName:String,
     val validDate:String,
     val cVVCode:String,
-    val cardCategory:CardCategoryEnum
+    val cardCategory:CardType
 )

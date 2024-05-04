@@ -1,5 +1,6 @@
 package uz.gita.mobilebank.presentation.screens.splash
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -24,6 +25,7 @@ import uz.gita.mobilebank.R
 import uz.gita.mobilebank.ui.theme.TextColorBlack
 class SplashScreen : Screen {
 
+    @SuppressLint("SuspiciousIndentation")
     @Composable
     override fun Content() {
     val viewModel: SplashContract.ViewModel = getViewModel<SplashViewModel>()

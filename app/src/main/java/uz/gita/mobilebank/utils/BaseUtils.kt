@@ -1,4 +1,4 @@
-package uz.gita.mobilebank.utils.widgets
+package uz.gita.mobilebank.utils
 
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.padding
@@ -11,8 +11,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import cafe.adriel.voyager.navigator.tab.LocalTabNavigator
 import cafe.adriel.voyager.navigator.tab.Tab
+import timber.log.Timber
 import uz.gita.mobilebank.ui.theme.DarkGray
 import uz.gita.mobilebank.ui.theme.TextColorBlue
+
+fun String.myLog(tag:String = "Tag") = Timber.tag(tag).d(this)
 
 @Composable
 fun RowScope.TabNavigatorItem(tab: Tab) {
@@ -34,4 +37,13 @@ fun RowScope.TabNavigatorItem(tab: Tab) {
         selectedContentColor = TextColorBlue,
         unselectedContentColor = DarkGray
     )
+}
+
+fun String.getCardNumberForUi():String{
+    val sb = StringBuilder()
+    for (i in indices){
+        if (i%4 == 0 && i !=0) sb.append("   ").append(this[i])
+        else sb.append(this[i])
+    }
+    return sb.toString()
 }

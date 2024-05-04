@@ -28,7 +28,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             MobileBankTheme {
-                Navigator(screen = MainScreen()) { navigator ->
+                Navigator(screen = SplashScreen()) { navigator ->
                     navigationHandler.navigationStack
                         .onEach { it.invoke(navigator) }
                         .launchIn(lifecycleScope)

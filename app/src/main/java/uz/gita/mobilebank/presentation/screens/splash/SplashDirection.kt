@@ -1,6 +1,7 @@
 package uz.gita.mobilebank.presentation.screens.splash
 
 import uz.gita.mobilebank.presentation.screens.intro.IntroScreen
+import uz.gita.mobilebank.presentation.screens.signIn.SignIn
 import uz.gita.mobilebank.utils.navigation.AppNavigator
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -14,6 +15,6 @@ class SplashDirection @Inject constructor(
     }
 
     override suspend fun openLoginScreen() {
-        //TODO("Not yet implemented")
+       navigator.replace(SignIn())
     }
 }

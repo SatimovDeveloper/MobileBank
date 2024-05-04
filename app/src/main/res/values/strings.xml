@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">MobileBank</string>
     <string name="splashText">BANKPICK</string>
-    <string name="introPageOneTextTitle">Fastest Payment in the world</string>
+    <string name="introPageOneTextTitle">Fastest Payment in \nthe world</string>
     <string name="introPageOneText">Integrate multiple payment methods to help you up the process quickly</string>
     <string name="introPageTwoTextTitle">The most Sacoure Platform for Customer</string>
     <string name="introPageTwoText">Built-in Fingerprint, face recognition and more, keeping you completely safe</string>
@@ -18,4 +18,6 @@
     <string name="confirm_password">Confirm Password</string>
     <string name="go_to_sign_in">Already have an account. </string>
     <string name="go_to_sign_up">"I'm a new user. "</string>
+    <string name="valid_data">Expire Date</string>
+    <string name="svv">CVV</string>
 </resources>

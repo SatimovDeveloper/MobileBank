@@ -1,4 +1,4 @@
-package uz.gita.mobilebank.utils.widgets
+package uz.gita.mobilebank.ui.components
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image

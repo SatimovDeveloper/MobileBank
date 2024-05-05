@@ -1,4 +1,4 @@
-package uz.gita.mobilebank.utils.widgets
+package uz.gita.mobilebank.ui.components
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier

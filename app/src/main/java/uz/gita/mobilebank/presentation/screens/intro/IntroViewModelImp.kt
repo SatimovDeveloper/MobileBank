@@ -5,7 +5,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import org.orbitmvi.orbit.syntax.simple.intent
 import org.orbitmvi.orbit.viewmodel.container
 import uz.gita.mobilebank.data.source.local.Pref
-import uz.gita.mobilebank.presentation.screens.signIn.SignIn
+import uz.gita.mobilebank.presentation.screens.signIn.SignInScreen
 import javax.inject.Inject
 
 @HiltViewModel
@@ -17,7 +17,7 @@ class IntroViewModelImp @Inject constructor(
         when(intent){
             is IntroContract.Intent.ClickNext ->{
                 shared.setShowIntro()
-                direction.navigate(SignIn())
+                direction.navigate(SignInScreen())
             }
         }
 

@@ -10,9 +10,6 @@ import cafe.adriel.voyager.navigator.Navigator
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import uz.gita.mobilebank.presentation.screens.main.MainScreen
-import uz.gita.mobilebank.presentation.screens.signIn.SignIn
-import uz.gita.mobilebank.presentation.screens.signUp.SignUp
 import uz.gita.mobilebank.presentation.screens.splash.SplashScreen
 import uz.gita.mobilebank.ui.theme.MobileBankTheme
 import uz.gita.mobilebank.utils.navigation.NavigationHandler

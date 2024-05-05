@@ -41,7 +41,6 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import cafe.adriel.voyager.core.screen.Screen
@@ -49,13 +48,13 @@ import cafe.adriel.voyager.hilt.getViewModel
 import org.orbitmvi.orbit.compose.collectAsState
 import uz.gita.mobilebank.R
 import uz.gita.mobilebank.data.models.IntroUiData
+import uz.gita.mobilebank.ui.components.ButtonGeneral
 import uz.gita.mobilebank.ui.theme.BackgroundColorWhite
 import uz.gita.mobilebank.ui.theme.ButtonColor
 import uz.gita.mobilebank.ui.theme.TextColorBlack
 import uz.gita.mobilebank.ui.theme.TextColorGray
 import uz.gita.mobilebank.ui.theme.UnselectedDotsColor
 import uz.gita.mobilebank.utils.myLog
-import uz.gita.mobilebank.utils.widgets.ButtonGeneral
 
 class IntroScreen : Screen {
     @Composable
@@ -131,16 +130,17 @@ fun IntroContent(
                     .fillMaxWidth()
                     .padding(24.dp)
                     .height(56.dp),
-                contentText = "Next"
-            ) {
-                if (currentPage == data.size-1){
-                    "Sign In Screenga o'tdi".myLog()
-                    onEventDispatcher(IntroContract.Intent.ClickNext)
-                }
-                else currentPage += 1
+                contentText = "Next",
+                onClicked = {
+                    if (currentPage == data.size - 1) {
+                        "Sign In Screenga o'tdi".myLog()
+                        onEventDispatcher(IntroContract.Intent.ClickNext)
+                    } else currentPage += 1
 
-            }
+                }
+            )
         }
+
     }
 
     LaunchedEffect(currentPage) {

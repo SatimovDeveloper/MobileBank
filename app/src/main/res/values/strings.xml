@@ -20,4 +20,7 @@
     <string name="go_to_sign_up">"I'm a new user. "</string>
     <string name="valid_data">Expire Date</string>
     <string name="svv">CVV</string>
+    <string name="verify_code">Verify code</string>
+    <string name="verification">Verification</string>
+    <string name="content_text">Enter the 6-digit code sent to the number: **** ** *** </string>
 </resources>

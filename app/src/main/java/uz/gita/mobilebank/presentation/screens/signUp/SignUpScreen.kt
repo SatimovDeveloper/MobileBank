@@ -1,6 +1,7 @@
 package uz.gita.mobilebank.presentation.screens.signUp
 
 import androidx.annotation.StringRes
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -51,6 +52,7 @@ import cafe.adriel.voyager.hilt.getViewModel
 import org.orbitmvi.orbit.compose.collectAsState
 import uz.gita.mobilebank.R
 import uz.gita.mobilebank.data.source.remote.request.auth.SignUpRequest
+import uz.gita.mobilebank.presentation.screens.signIn.SignInContract
 import uz.gita.mobilebank.ui.components.ButtonGeneral
 import uz.gita.mobilebank.ui.components.DateMaskTransformation
 import uz.gita.mobilebank.ui.components.DropdownList
@@ -98,11 +100,11 @@ private fun ScreenContent(
 
     when (uiState) {
         is SignUpContract.UiState.InitUiState -> {
-            var isLoading by remember { mutableStateOf(uiState.isLoading) }
+            val isLoading by remember { mutableStateOf(uiState.isLoading) }
             val focusManager = LocalFocusManager.current
             Scaffold(topBar = {
                 TopAppBarWithNavigation {
-
+                    onEventDispatcher(SignUpContract.Intent.ClickBackButton)
                 }
             }) { innerPadding ->
                 Column(
@@ -211,7 +213,15 @@ private fun ScreenContent(
                                 keyboardActions = KeyboardActions(onNext = {
                                     focusManager.moveFocus(FocusDirection.Next)
                                 }),
-                                visualTransformation = DateMaskTransformation
+                                visualTransformation = DateMaskTransformation,
+                                placeholder = {
+                                    Text(
+                                        text = "dd.mm.yyyy",
+                                        style = TextStyle(
+                                            color = TextColorBlack.copy(alpha = 0.5f)
+                                        )
+                                    )
+                                }
 
                             )
 
@@ -393,21 +403,21 @@ private fun ScreenContent(
                         })
                     )
 
-                    val enabled = firstName.length>2
-                            && lastName.length>2
-                            && bornDate.length>0
-                            && gender.length>0
+                    val enabled = firstName.length > 2
+                            && lastName.length > 2
+                            && bornDate.length > 0
+                            && gender.length > 0
                             && phoneNumber.length == 9
-                            && password.length>5
+                            && password.length > 5
                             && confirmPassword == password
 
                     val data = SignUpRequest(
-                        lastName = lastName,
-                        firstName = firstName,
-                        bornDate = bornDate,
-                        gender = gender,
-                        phone = "+998$phoneNumber",
-                        password = password
+                        lastName = lastName.trim(),
+                        firstName = firstName.trim(),
+                        bornDate = bornDate.trim(),
+                        gender = gender.trim(),
+                        phone = "+998$phoneNumber".trim(),
+                        password = password.trim()
                     )
                     data.toString().myLog()
 
@@ -420,8 +430,7 @@ private fun ScreenContent(
                         enabled = enabled,
                         isLoading = isLoading,
                         onClicked = {
-                            // onEventDispatcher.invoke(SignUpContract.Intent.ClickSignUp(SignUpRequest()))
-
+                             onEventDispatcher.invoke(SignUpContract.Intent.ClickSignUp(data))
                         }
 
                     )
@@ -442,6 +451,9 @@ private fun ScreenContent(
                             )
                         )
                         Text(
+                            modifier = Modifier.clickable{
+                              onEventDispatcher(SignUpContract.Intent.ClickSignIn)
+                            },
                             text = stringResource(id = R.string.sign_in),
                             style = TextStyle(
                                 fontSize = 14.sp,
@@ -474,8 +486,8 @@ private fun InputName(
 
 }
 
-@Preview
-@Composable
-private fun ScreenPrev() {
-    ScreenContent(SignUpContract.UiState.InitUiState(false))
-}
+//@Preview
+//@Composable
+//private fun ScreenPrev() {
+//    ScreenContent(SignUpContract.UiState.InitUiState(false))
+//}

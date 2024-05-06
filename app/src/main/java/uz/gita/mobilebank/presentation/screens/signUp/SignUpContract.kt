@@ -12,6 +12,7 @@ interface SignUpContract {
     sealed interface Intent{
         data object  ClickSignIn:Intent
         data class ClickSignUp(val data:SignUpRequest):Intent
+        data object ClickBackButton:Intent
     }
     sealed interface UiState{
         data class InitUiState(val isLoading:Boolean):UiState
@@ -22,7 +23,7 @@ interface SignUpContract {
     }
 
     interface Direction{
-        suspend fun signUpToMain()
+        suspend fun signUpToVerifySignUp(phone:String)
         suspend fun signUpToSigIn()
 
     }

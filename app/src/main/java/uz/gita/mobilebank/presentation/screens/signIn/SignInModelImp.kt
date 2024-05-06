@@ -7,7 +7,7 @@ import org.orbitmvi.orbit.viewmodel.container
 import javax.inject.Inject
 @HiltViewModel
 class SignInModelImp @Inject constructor(
-    private val direction:SignInContract.SignInDirection
+    private val direction:SignInContract.Direction
 ) : SignInContract.ViewModel, ViewModel() {
     override fun onEventDispatcher(intent: SignInContract.Intent)  = intent{
         when(intent){

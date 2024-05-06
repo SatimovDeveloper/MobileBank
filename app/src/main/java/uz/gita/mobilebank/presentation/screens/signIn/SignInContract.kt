@@ -22,7 +22,7 @@ interface SignInContract {
     sealed interface SideEffect{
 
     }
-    interface SignInDirection {
+    interface Direction {
         suspend fun signInToSignUp()
 
 

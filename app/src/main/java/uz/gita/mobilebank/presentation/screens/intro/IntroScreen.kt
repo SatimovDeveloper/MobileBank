@@ -131,6 +131,7 @@ fun IntroContent(
                     .padding(24.dp)
                     .height(56.dp),
                 contentText = "Next",
+                isLoading = false,
                 onClicked = {
                     if (currentPage == data.size - 1) {
                         "Sign In Screenga o'tdi".myLog()

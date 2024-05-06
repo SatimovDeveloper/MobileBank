@@ -26,7 +26,7 @@ fun ButtonGeneral(
     modifier: Modifier = Modifier,
     contentText: String,
     onClicked:(()->Unit),
-    isLoading: Boolean = false,
+    isLoading: Boolean ,
     enabled: Boolean = false
 ) {
     Button(
@@ -69,5 +69,5 @@ fun ButtonGeneral(
 @Preview
 @Composable
 private fun ButtonGeneralPreview() {
-    ButtonGeneral(contentText = "Next", onClicked = {})
+    ButtonGeneral(contentText = "Next", isLoading = false,onClicked = {})
 }

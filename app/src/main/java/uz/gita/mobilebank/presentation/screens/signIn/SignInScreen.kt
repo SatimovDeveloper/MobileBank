@@ -189,6 +189,7 @@ private fun ScreenContent(
                             .fillMaxWidth()
                             .height(56.dp),
                         contentText = stringResource(id = R.string.sign_in),
+                        isLoading = false,
                         onClicked = {}
                     )
                     Row(

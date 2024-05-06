@@ -6,7 +6,7 @@ import javax.inject.Inject
 class SignInDirectionImp @Inject constructor(
 private val   navigator: AppNavigator
 
-):SignInContract.SignInDirection{
+):SignInContract.Direction{
     override suspend fun signInToSignUp() {
         navigator.navigateTo(SignUpScreen())
     }

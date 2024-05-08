@@ -1,4 +1,4 @@
-package uz.gita.mobilebank.presentation.screens.verifySignUp
+package uz.gita.mobilebank.presentation.screens.auth.verifySignUp
 
 import org.orbitmvi.orbit.ContainerHost
 
@@ -8,13 +8,14 @@ interface VerifySignUpContract {
     }
 
     sealed interface Intent {
-        data class LoadPhoneIntent(val phone: String):Intent
+        data class LoadPhoneIntent(val phone: String): Intent
         data object ClickBackButton : Intent
-        data object ClickNextButton : Intent
+        data class ClickNextButton (val code:String): Intent
+        data object ClickRefreshCode: Intent
     }
 
     sealed interface UiState {
-        data class InitState(val verifyText:String="00 00", ) : UiState
+        data class InitState(val verifyText:String="00 00") : UiState
 
     }
 
@@ -24,7 +25,7 @@ interface VerifySignUpContract {
 
     interface Direction {
         suspend fun verifySignUpToSignup()
-        suspend fun verifySignUpToPinScreen()
+        suspend fun verifySignUpToMainScreen()
 
     }
 }

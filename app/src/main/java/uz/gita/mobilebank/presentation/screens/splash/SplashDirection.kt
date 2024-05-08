@@ -1,7 +1,7 @@
 package uz.gita.mobilebank.presentation.screens.splash
 
 import uz.gita.mobilebank.presentation.screens.intro.IntroScreen
-import uz.gita.mobilebank.presentation.screens.signIn.SignInScreen
+import uz.gita.mobilebank.presentation.screens.auth.signIn.SignInScreen
 import uz.gita.mobilebank.utils.navigation.AppNavigator
 import javax.inject.Inject
 import javax.inject.Singleton

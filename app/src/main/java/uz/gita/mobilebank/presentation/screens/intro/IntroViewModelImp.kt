@@ -5,7 +5,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import org.orbitmvi.orbit.syntax.simple.intent
 import org.orbitmvi.orbit.viewmodel.container
 import uz.gita.mobilebank.data.source.local.Pref
-import uz.gita.mobilebank.presentation.screens.signIn.SignInScreen
+import uz.gita.mobilebank.presentation.screens.auth.signIn.SignInScreen
 import javax.inject.Inject
 
 @HiltViewModel

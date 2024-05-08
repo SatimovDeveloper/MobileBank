@@ -1,4 +1,4 @@
-package uz.gita.mobilebank.presentation.screens.signUp
+package uz.gita.mobilebank.presentation.screens.auth.signUp
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.clickable
@@ -52,7 +52,7 @@ import cafe.adriel.voyager.hilt.getViewModel
 import org.orbitmvi.orbit.compose.collectAsState
 import uz.gita.mobilebank.R
 import uz.gita.mobilebank.data.source.remote.request.auth.SignUpRequest
-import uz.gita.mobilebank.presentation.screens.signIn.SignInContract
+import uz.gita.mobilebank.presentation.screens.auth.signIn.SignInContract
 import uz.gita.mobilebank.ui.components.ButtonGeneral
 import uz.gita.mobilebank.ui.components.DateMaskTransformation
 import uz.gita.mobilebank.ui.components.DropdownList
@@ -89,7 +89,7 @@ private fun ScreenContent(
     var firstName by remember { mutableStateOf("") }
     var lastName by remember { mutableStateOf("") }
     var bornDate by remember { mutableStateOf("") }
-    var gender by remember { mutableStateOf("") }
+    var gender by remember { mutableStateOf("1") }
     var phoneNumber by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var confirmPassword by remember { mutableStateOf("") }

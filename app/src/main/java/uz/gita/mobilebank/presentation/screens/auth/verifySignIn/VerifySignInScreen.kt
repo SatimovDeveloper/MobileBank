@@ -1,6 +1,5 @@
-package uz.gita.mobilebank.presentation.screens.verifySignUp
+package uz.gita.mobilebank.presentation.screens.auth.verifySignIn
 
-import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
@@ -16,6 +15,8 @@ import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.AppBarDefaults
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
@@ -30,7 +31,6 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.State
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -44,6 +44,8 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
@@ -57,45 +59,52 @@ import cafe.adriel.voyager.hilt.getViewModel
 import kotlinx.coroutines.delay
 import org.orbitmvi.orbit.compose.collectAsState
 import uz.gita.mobilebank.R
+import uz.gita.mobilebank.presentation.screens.auth.verifySignUp.VerifySignUpContract
 import uz.gita.mobilebank.ui.components.ButtonGeneral
 import uz.gita.mobilebank.ui.theme.LightGray
+import uz.gita.mobilebank.ui.theme.MobileBankTheme
 import uz.gita.mobilebank.ui.theme.TextColorBlack
 import uz.gita.mobilebank.ui.theme.White
 
-class VerifySignUpScreen(val phone:String) : Screen {
+class VerifySignInScreen(val phone:String):Screen {
     override val key: ScreenKey = uniqueScreenKey
-
     @Composable
     override fun Content() {
-        val viewModel: VerifySignUpContract.ViewModel = getViewModel<VerifySignUpModel>()
-        Log.d("TTT", "Content: $phone")
-        viewModel.onEventDispatcher(VerifySignUpContract.Intent.LoadPhoneIntent(phone))
+        val viewModel:VerifySignInContract.ViewModel = getViewModel<VerifySignInModel>()
+        viewModel.onEventDispatcher(VerifySignInContract.Intent.LoadPhoneIntent(phone))
         val uiState = viewModel.collectAsState().value
-        ScreenContent(uiState, viewModel::onEventDispatcher)
+        MobileBankTheme {
+            ScreenContent(
+                uiState = uiState,
+                onEventDispatcher = viewModel::onEventDispatcher
+            )
+        }
     }
 }
 
 @Composable
 private fun ScreenContent(
-    uiState: VerifySignUpContract.UiState,
-    onEventDispatcher: (VerifySignUpContract.Intent) -> Unit
+    uiState:VerifySignInContract.UiState,
+    onEventDispatcher:(VerifySignInContract.Intent)->Unit,
+    modifier: Modifier = Modifier
 ) {
     var timerState by remember { mutableStateOf(true) }
     var buttonState by remember { mutableStateOf(false) }
-    var timer by remember{ mutableStateOf(59) }
+    var timer by remember { mutableStateOf(59) }
     val context = LocalContext.current
     val focusManager = LocalFocusManager.current
-    var smsCode by remember{ mutableStateOf("") }
-    LaunchedEffect(key1 = true) {
-        while (timer>0){
+    var smsCode by remember { mutableStateOf("") }
+    var launchedKey = true
+    LaunchedEffect(key1 = launchedKey) {
+        while (timer > 0) {
             delay(1000)
             timer--
-            if(timer==0) timerState = false
+            if (timer == 0) timerState = false
         }
     }
 
     when (uiState) {
-        is VerifySignUpContract.UiState.InitState -> {
+        is VerifySignInContract.UiState.InitState -> {
             Box(modifier = Modifier.fillMaxSize()) {
                 Scaffold(
                     Modifier.fillMaxSize(),
@@ -110,9 +119,11 @@ private fun ScreenContent(
                             elevation = 0.dp
                         ) {
 
-                            Box(modifier = Modifier
-                                .fillMaxSize()
-                                .background(color = White)) {
+                            Box(
+                                modifier = Modifier
+                                    .fillMaxSize()
+                                    .background(color = White)
+                            ) {
                                 IconButton(
                                     modifier = Modifier
                                         .padding(horizontal = 8.dp, vertical = 8.dp)
@@ -120,7 +131,7 @@ private fun ScreenContent(
                                         .background(color = LightGray, shape = CircleShape)
                                         .padding(8.dp)
                                         .align(Alignment.CenterStart),
-                                    onClick = { onEventDispatcher(VerifySignUpContract.Intent.ClickBackButton) }) {
+                                    onClick = { onEventDispatcher(VerifySignInContract.Intent.ClickBackButton) }) {
                                     Icon(
                                         modifier = Modifier
                                             .fillMaxSize(),
@@ -162,7 +173,7 @@ private fun ScreenContent(
                                         horizontal = 8.dp,
                                         vertical = 12.dp
                                     ),
-                                    text = "${context.getString(R.string.content_text)} ${uiState.verifyText}" ,
+                                    text = "${context.getString(R.string.content_text)} ${uiState.verifyText}",
                                     style = TextStyle(
                                         fontSize = 14.sp,
                                         fontFamily = FontFamily(Font(R.font.inter)),
@@ -188,14 +199,23 @@ private fun ScreenContent(
                                         singleLine = true,
                                         value = smsCode,
                                         onValueChange = {
-                                            if (it.length<=6){
+                                            if (it.length <= 6) {
                                                 smsCode = it
                                                 buttonState = smsCode.length >= 6
-                                            }else{
+                                            } else {
                                                 buttonState = true
                                                 focusManager.clearFocus()
                                             }
+                                        },
+                                        keyboardOptions = KeyboardOptions(
+                                            keyboardType = KeyboardType.Number,
+                                            imeAction = ImeAction.Go
+
+                                        ),
+                                        keyboardActions = KeyboardActions(onGo = {
+                                            focusManager.clearFocus()
                                         })
+                                    )
                                     Box(
                                         modifier = Modifier
                                             .padding(start = 8.dp)
@@ -208,7 +228,7 @@ private fun ScreenContent(
                                         contentAlignment = Alignment.Center,
 
                                         ) {
-                                        if (timerState){
+                                        if (timerState) {
                                             Text(
                                                 modifier = Modifier
                                                     .wrapContentWidth()
@@ -220,15 +240,26 @@ private fun ScreenContent(
 
                                                     ),
                                             )
-                                        }else{
+                                        } else {
                                             IconButton(
                                                 modifier = Modifier.fillMaxSize(),
-                                                onClick = { /*TODO*/ }) {
-                                                Icon(modifier = Modifier.padding(8.dp).fillMaxSize(),
+                                                onClick = {
+                                                    timerState = true
+                                                    timer = 59
+                                                    smsCode = ""
+                                                    launchedKey = false
+
+                                                    onEventDispatcher(VerifySignInContract.Intent.ClickRefreshCode)
+                                                }
+                                            ) {
+                                                Icon(
+                                                    modifier = Modifier
+                                                        .padding(8.dp)
+                                                        .fillMaxSize(),
                                                     imageVector = Icons.Default.Refresh,
                                                     contentDescription = null
                                                 )
-                                                
+
                                             }
                                         }
 
@@ -245,7 +276,13 @@ private fun ScreenContent(
                                     .fillMaxWidth()
                                     .height(56.dp),
                                 contentText = context.getString(R.string.verification),
-                                onClicked = { onEventDispatcher(VerifySignUpContract.Intent.ClickNextButton) },
+                                onClicked = {
+                                    onEventDispatcher(
+                                        VerifySignInContract.Intent.ClickNextButton(
+                                            smsCode
+                                        )
+                                    )
+                                },
                                 enabled = buttonState,
                                 isLoading = false
                             )
@@ -256,11 +293,10 @@ private fun ScreenContent(
         }
     }
 
-
 }
 
-@Preview(showBackground = true)
+@Preview
 @Composable
 private fun PreviewScreen() {
-    ScreenContent(VerifySignUpContract.UiState.InitState(), {})
+    ScreenContent(VerifySignInContract.UiState.InitState(),{})
 }

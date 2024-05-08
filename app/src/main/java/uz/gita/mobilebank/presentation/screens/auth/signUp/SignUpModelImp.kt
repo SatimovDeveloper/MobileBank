@@ -1,4 +1,4 @@
-package uz.gita.mobilebank.presentation.screens.signUp
+package uz.gita.mobilebank.presentation.screens.auth.signUp
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

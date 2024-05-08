@@ -1,7 +1,7 @@
-package uz.gita.mobilebank.presentation.screens.signUp
+package uz.gita.mobilebank.presentation.screens.auth.signUp
 
 import uz.gita.mobilebank.presentation.screens.main.MainScreen
-import uz.gita.mobilebank.presentation.screens.verifySignUp.VerifySignUpScreen
+import uz.gita.mobilebank.presentation.screens.auth.verifySignUp.VerifySignUpScreen
 import uz.gita.mobilebank.utils.navigation.AppNavigator
 import javax.inject.Inject
 import javax.inject.Singleton
